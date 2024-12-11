@@ -1,11 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:zagel/widgets/coustm_bt.dart';
 import 'package:zagel/widgets/coustm_text.dart';
 import 'package:zagel/widgets/coustmtextfield.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  HomeScreen({super.key,this.email,this.passwoerd});
+  String? email,passwoerd;
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -32,17 +39,40 @@ class HomeScreen extends StatelessWidget {
                 const CoustmText(text: 'zagel', size: 30),
                 const CoustmText(text: 'sign in', size: 16),
                 const SizedBox(height: 25,),
-                const SizedBox(
+                 SizedBox(
                   height: 60,
                   width: 600,
-                  child: Coustmtextfield(labeltext: 'e_mail',icon:Icons.email)
+                  child: Coustmtextfield(
+                  labeltext: 'e_mail',
+                  icon:Icons.email,
+                  onChanged:(data)
+                  {
+                    email=data;
+                  } ,
+                  )
                   ),
-                const SizedBox(
+                 SizedBox(
                   width: 600,
-                  child: Coustmtextfield(labeltext: 'password',icon: Icons.password)
+                  child: Coustmtextfield(
+                    labeltext: 'password',
+                    icon: Icons.password,
+                    onChanged:(data)
+                    {
+                      passwoerd=data;
+                    },
+                    )
                   ),
-                const SizedBox(height: 25,),
-                 const CoustmBt(bttext: 'Log in',),
+                 const SizedBox(height: 25,),
+                  CoustmBt(
+                  bttext: 'Log in',
+                  onPressed:() async {
+                     var Auth=
+                     FirebaseAuth.instance;
+                     UserCredential user= await Auth.createUserWithEmailAndPassword(
+                      email:widget.email! ,
+                      password:widget.passwoerd! );
+                      }
+                  ),
                  const SizedBox(height: 15,),
                  Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -18,7 +18,7 @@ const CoustmBt({super.key, this.onPressed, required this.bttext});
           ),
         height: 35,
         width: 85,
-        child:  Center(child: CoustmText(text: bttext, size: 15,color: 0xff3fc73,)),
+        child: Center(child: CoustmText(text: bttext, size: 15,color: const Color.fromARGB(255, 255, 255, 255),)),
       )
       );
   }

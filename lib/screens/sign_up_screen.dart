@@ -41,9 +41,9 @@ class SignUpScreen extends StatelessWidget {
                   width: 600,
                   child: Coustmtextfield(labeltext: 'password',icon: Icons.password,)
                   ),
-                 const SizedBox(height: 15,),
-                 const CoustmBt(bttext: 'Sign up',),
                  const SizedBox(height: 25,),
+                 const CoustmBt(bttext: 'Sign up',),
+                 const SizedBox(height: 15,),
                  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

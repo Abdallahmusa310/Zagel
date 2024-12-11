@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "260552381914",
+    "project_id": "zagel-chatapp-20dec",
+    "storage_bucket": "zagel-chatapp-20dec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260552381914:android:7eeeedf46aa434500e1ce3",
+        "android_client_info": {
+          "package_name": "com.zagel.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj0IffZf8p2OiKmEArqx4mLQwHmGd90x4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
