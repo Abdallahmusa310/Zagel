@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:zagel/firebase_options.dart';
+import 'package:zagel/screens/chat_screen.dart';
 import 'package:zagel/screens/home_screen.dart';
 import 'package:zagel/screens/sign_up_screen.dart';
 import 'package:zagel/screens/splash_screen.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         routes: {
           'SplashScreen':(context)=>const SplashScreen(),
           'homescreen'  :(context)=> HomeScreen(),
-          'signup'      :(context)=>const SignUpScreen()
+          'signup'      :(context)=> SignUpScreen(),
+          'ChatScreen'  :(context)=> const ChatScreen(),
         },
         initialRoute: 'SplashScreen',
 
