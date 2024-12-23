@@ -1,4 +1,4 @@
-package com.example.zagel
+package com.zagel.app
 
 import io.flutter.embedding.android.FlutterActivity
 
