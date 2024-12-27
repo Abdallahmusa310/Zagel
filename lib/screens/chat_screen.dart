@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:zagel/models/message_model.dart';
 import 'package:zagel/widgets/coustm_massage.dart';
 import 'package:zagel/widgets/coustm_text.dart';
 import 'package:zagel/widgets/coustmtextfield.dart';
@@ -20,13 +21,19 @@ class _ChatScreenState extends State<ChatScreen> {
       FirebaseFirestore.instance.collection('message');
 
   TextEditingController controller = TextEditingController();
+  final ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-        future: message.get(),
+    var email = ModalRoute.of(context)!.settings.arguments;
+    return StreamBuilder<QuerySnapshot>(
+        stream: message.orderBy('sent at', descending: true).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            print(snapshot.data!.docs[7]['message']);
+            List<MessageModel> messagelist = [];
+            for (int i = 0; i < snapshot.data!.docs.length; i++) {
+              messagelist.add(MessageModel.fromJson(snapshot.data!.docs[i]));
+            }
             return Scaffold(
                 appBar: AppBar(
                   title: const Center(
@@ -41,17 +48,34 @@ class _ChatScreenState extends State<ChatScreen> {
                 body: Column(
                   children: [
                     Expanded(
-                      child: ListView.builder(itemBuilder: (context, index) {
-                        return const Chatmassage();
-                      }),
+                      child: ListView.builder(
+                          reverse: true,
+                          controller: scrollController,
+                          itemCount: messagelist.length,
+                          itemBuilder: (context, index) {
+                            return messagelist[index].id == email
+                                ? Chatmassage(
+                                    message: messagelist[index],
+                                  )
+                                : Chatmassagetow(message: messagelist[index]);
+                          }),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: Coustmtextfeild(
                         controller: controller,
                         onSubmitted: (data) {
-                          message.add({'message': data});
+                          message.add({
+                            'message': data,
+                            'sent at': DateTime.now(),
+                            'id': email
+                          });
                           controller.clear();
+                          scrollController.animateTo(
+                            0,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.bounceInOut,
+                          );
                         },
                         labeltext: 'send message',
                         iconn: Icons.send_rounded,

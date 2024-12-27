@@ -7,7 +7,7 @@ import 'package:zagel/widgets/coustmtextfield.dart';
 
 // ignore: must_be_immutable
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen({
+  const SignUpScreen({
     super.key,
   });
 
@@ -131,8 +131,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   createuser() async {
-    UserCredential credintial =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    // UserCredential credintial =
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email!,
       password: passwoerd!,
     );

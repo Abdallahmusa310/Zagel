@@ -1,9 +1,10 @@
 class MessageModel {
   final String message;
+  final String id;
 
-  MessageModel(this.message);
+  MessageModel(this.message, this.id);
 
-  factory MessageModel.fromJson(Map<String, dynamic> jsondata) {
-    return MessageModel(jsondata['message']);
+  factory MessageModel.fromJson(jsondata) {
+    return MessageModel(jsondata['message'], jsondata['id']);
   }
 }

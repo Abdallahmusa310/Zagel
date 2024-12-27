@@ -84,7 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       setState(() {});
                       try {
                         await signin();
-                        Navigator.pushNamed(context, 'ChatScreen');
+                        Navigator.pushNamed(context, 'ChatScreen',
+                            arguments: email);
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'user-not-found') {
                           const SnackBar(
@@ -129,8 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   signin() async {
-    UserCredential credintial =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+    // UserCredential credintial =
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email!,
       password: passwoerd!,
     );
