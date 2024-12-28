@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 
 class Coustmtextformfield extends StatelessWidget {
   const Coustmtextformfield(
-      {super.key, this.labeltext, this.icon, this.onChanged});
+      {super.key,
+      this.labeltext,
+      this.iconbt,
+      this.icon,
+      this.onChanged,
+      this.obscureText = true});
   final String? labeltext;
   final IconData? icon;
+  final bool obscureText;
+  final Widget? iconbt;
 
   final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText,
       validator: (data) {
         if (data == null || data.isEmpty) {
           return 'this feild is requird';
@@ -20,6 +28,7 @@ class Coustmtextformfield extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
           prefixIcon: Icon(icon),
+          suffixIcon: iconbt,
           labelText: '$labeltext',
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(

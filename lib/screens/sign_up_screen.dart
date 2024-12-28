@@ -57,6 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 70,
                     width: 600,
                     child: Coustmtextformfield(
+                      obscureText: false,
                       labeltext: 'e_mail',
                       icon: Icons.email,
                       onChanged: (data) {
@@ -66,6 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                     width: 600,
                     child: Coustmtextformfield(
+                      obscureText: true,
                       labeltext: 'password',
                       icon: Icons.password,
                       onChanged: (data) {

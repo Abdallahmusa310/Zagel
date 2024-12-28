@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool isload = false;
   String? email, passwoerd;
+  bool isPasswordVisible = true;
 
   GlobalKey<FormState> formkey = GlobalKey();
 
@@ -58,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 60,
                     width: 600,
                     child: Coustmtextformfield(
+                      obscureText: false,
                       labeltext: 'e_mail',
                       icon: Icons.email,
                       onChanged: (data) {
@@ -67,6 +69,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                     width: 600,
                     child: Coustmtextformfield(
+                      obscureText: isPasswordVisible,
+                      iconbt: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isPasswordVisible = !isPasswordVisible;
+                            });
+                          },
+                          icon: Icon(
+                            isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          )),
                       labeltext: 'password',
                       icon: Icons.password,
                       onChanged: (data) {
